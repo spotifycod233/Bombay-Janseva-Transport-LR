@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bombay Janseva Transport Co. - LR System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+    // Check authentication
+    if (!sessionStorage.getItem('isAuthenticated')) {
+        window.location.href = 'login.html';
+    }
+</script>
+<button id="logoutBtn" class="nav-btn">Logout</button>
+<script>
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+        sessionStorage.removeItem('isAuthenticated');
+        window.location.href = 'login.html';
+    });
+</script>
+<body>
+    
+    <div class="container">
+        <div class="nav-buttons">
+            <a href="statistics.html" class="nav-btn">Statistics</a>
+        </div>
+        <h1>BOMBAY JANSEVA TRANSPORT CO.</h1>
+        <p></p>
+        <div class="address">
+            <p><strong></strong> </p>
+            <p></p>
+            <p><strong></strong> </p>
+        </div>
+
+        <div class="input-section">
+            <div class="form-group">
+                <label for="consignor">CONSIGNOR:</label>
+                <input type="text" id="consignor" placeholder="Enter consignor name">
+            </div>
+        
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="consignee">CONSIGNEE:</label>
+                    <input type="text" id="consignee" placeholder="Enter consignee name">
+                </div>
+                <div class="form-group">
+                    <label for="to">TO:</label>
+                    <input type="text" id="to" placeholder="Destination">
+                </div>
+                <div class="form-group">
+                    <label for="date">DATE:</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="truckNo">TRUCK NO.:</label>
+                    <input type="text" id="truckNo" placeholder="Truck number">
+                </div>
+                <div class="form-group">
+                    <label for="from">FROM:</label>
+                    <input type="text" id="from" placeholder="Origin" value="Kalamboli">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="noOfPackages">No. of Packages:</label>
+                    <input type="number" id="noOfPackages" placeholder="Number of packages">
+                </div>
+                <div class="form-group">
+                    <label for="natureOfGoods">Nature of Goods:</label>
+                    <textarea id="natureOfGoods" rows="2" placeholder=""></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="actualWeight">Actual Weight:</label>
+                    <input type="number" id="actualWeight" placeholder="Weight in kg">
+                </div>
+                <div class="form-group">
+                    <label for="lrNo">LR NO:</label>
+                    <input type="text" id="lrNo" placeholder="Enter LR number">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="freight">Freight:</label>
+                    <input type="number" id="freight" placeholder="Freight amount">
+                </div>
+                <div class="form-group">
+                    <label for="kaanta">Kaanta:</label>
+                    <input type="number" id="kaanta" placeholder="KAANTA amount">
+                </div>
+                <div class="form-group">
+                    <label for="cgst">CGST%:</label>
+                    <input type="number" id="cgst" placeholder="CGST amount">
+                </div>
+                <div class="form-group">
+                    <label for="sgst">SGST%:</label>
+                    <input type="number" id="sgst" placeholder="SGST amount">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="stCh">S.T. Ch.:</label>
+                    <input type="number" id="stCh" value="">
+                </div>
+                <div class="form-group">
+                    <label for="collection">Collection:</label>
+                    <input type="number" id="collection" placeholder="Collection amount">
+                </div>
+                <div class="form-group">
+                    <label for="ddCh">D.D. Ch.:</label>
+                    <input type="number" id="ddCh" placeholder="DD charges">
+                </div>
+                <div class="form-group">
+                    <label for="privateMark">Private Mark:</label>
+                    <input type="text" id="privateMark" placeholder="Private mark">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="remarks">Remarks:</label>
+                <textarea id="remarks" rows="2" placeholder="Any remarks"></textarea>
+            </div>
+
+            <button id="generateLR">Generate LR</button>
+        </div>
+
+        <div class="lr-preview" id="lrPreview">
+            <!-- LR will be generated here -->
+        </div>
+
+        <button id="printLR" style="display:none;">Print LR</button>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
