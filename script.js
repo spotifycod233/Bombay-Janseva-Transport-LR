@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     generateLRBtn.addEventListener('click', async function() {
         // Get all input values
         const lrNo = document.getElementById('lrNo').value;
+        if (!lrNo.trim()) {
+            alert("Please enter a valid LR number.");
+            return;
+        }
         const consignor = document.getElementById('consignor').value || 'A NEW SAGE CONVENTURE';
         const consignee = document.getElementById('consignee').value;
         const to = document.getElementById('to').value;
@@ -62,6 +66,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         const privateMark = document.getElementById('privateMark').value;
         const remarks = document.getElementById('remarks').value;
         
+        // if (!lrNo.trim()) {
+        //     alert("Please enter a valid LR number.");
+        //     return;
+        // }
+
         // Calculate total
         const total = ((parseFloat(freight) || 0) * 
                      (parseFloat(actualWeight) || 0)) + 
@@ -168,10 +177,10 @@ document.addEventListener('DOMContentLoaded', async function() {
                         </tr>
                         <tr>
                             <td>${consignee}</td>
-                            <td>${to}</td>
                             <td>${formattedDate}</td>
                             <td>${truckNo}</td>
                             <td>${from}</td>
+                            <td>${to}</td>
                         </tr>
                     </table>
                     
@@ -205,6 +214,61 @@ document.addEventListener('DOMContentLoaded', async function() {
                             <td></td>
                             <td>Kaanta</td>
                             <td>${kaanta || '0.00'}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>CGST 2.5%</td>
+                            <td>${cgst || '0.00'}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>SGST 2.5%</td>
+                            <td>${sgst || '0.00'}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>S.T. Ch.</td>
+                            <td>${stCh || '0.00'}</td>
+                            <td>${stCh || '0.00'}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Collection</td>
+                            <td>${collection || '0.00'}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>D.D. Ch.</td>
+                            <td>${ddCh || '0.00'}</td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -248,7 +312,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         printLRBtn.style.display = 'block';
         
         // Generate new LR number for next LR
-        document.getElementById('lrNo').value = generateLRNo();
+        document.getElementById('lrNo').value = '';
     });
     
     // Print LR button click handler
