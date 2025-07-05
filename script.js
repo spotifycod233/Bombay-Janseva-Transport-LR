@@ -112,201 +112,359 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
         
         // Generate LR HTML
-        lrPreview.innerHTML = `
-            <style>
-                @page {
-                    size: landscape;
-                    margin: 10mm;
-                }
-                .lr-container {
-                    width: 100%;
-                    font-family: Arial, sans-serif;
-                }
-                .company-header {
-                    text-align: center;
-                    margin-bottom: 15px;
-                }
-                .company-name {
-                    font-size: 18px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
-                .company-tagline {
-                    font-size: 14px;
-                }
-                .company-address {
-                    font-size: 12px;
-                }
-                .lr-no {
-                    text-align: right;
-                    margin: 0;
-                    padding: 0;
-                }
-                .lr-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin: 10px 0;
-                }
-                .lr-table th, .lr-table td {
-                    border: 1px solid #000;
-                    padding: 5px;
-                    text-align: center;
-                }
-                .lr-table th {
-                    background-color: #f2f2f2;
-                }
-            </style>
+        // Generate LR HTML
+lrPreview.innerHTML = `
+    <style>
+        @page {
+            size: landscape;
+            margin: 10mm;
+        }
+        .lr-container {
+            width: 100%;
+            font-family: Arial, sans-serif;
+            margin-bottom: 50px;
+        }
+        .company-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .company-tagline {
+            font-size: 14px;
+        }
+        .company-address {
+            font-size: 12px;
+        }
+        .lr-no {
+            text-align: right;
+            margin: 0;
+            padding: 0;
+        }
+        .lr-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        .lr-table th, .lr-table td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+        }
+        .lr-table th {
+            background-color: #f2f2f2;
+        }
+        .copy-footer {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .copy-label {
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .page-break {
+            page-break-after: always;
+        }
+    </style>
+    
+    <!-- Consignor Copy -->
+    <div class="lr-container">
+        <div class="company-header">
+            <div class="company-name">BOMBAY JANSEVA TRANSPORT CO.</div>
+            <div class="company-tagline">PART LOAD & FULL LOAD DAILY KALAMBOLI TO ALL OVER MUMBAI</div>
+            <div class="company-address">OFFICE: 338 Victoria Over Bridge, Opus Brimme Company<br>
+                Reap Road, Mumbai - 400 010, Private Bag #15156 / 9552021074 / 9506799279
+            </div>
+            <p class="lr-no"><strong>LR NO:</strong> ${lrNo}</p>
+            <p><strong>CONSIGNOR:</strong> ${consignor}</p>
             
-            <div class="lr-container">
-                <div class="company-header">
-                    <div class="company-name">BOMBAY JANSEVA TRANSPORT CO.</div>
-                    <div class="company-tagline">PART LOAD & FULL LOAD DAILY KALAMBOLI TO ALL OVER MUMBAI</div>
-                    <div class="company-address">OFFICE: 338 Victoria Over Bridge, Opus Brimme Company<br>
-                        Reap Road, Mumbai - 400 010, Private Bag #15156 / 9552021074 / 9506799279
-                    </div>
-                    <p class="lr-no"><strong>LR NO:</strong> ${lrNo}</p>
-                    <p><strong>CONSIGNOR:</strong> ${consignor}</p>
-                    
-                    <table class="lr-table">
-                        <tr>
-                            <th>CONSIGNEE:</th>
-                            <th>DATE:</th>
-                            <th>TRUCK NO.:</th>
-                            <th>FROM:</th>
-                            <th>TO:</th>
-                        </tr>
-                        <tr>
-                            <td>${consignee}</td>
-                            <td>${formattedDate}</td>
-                            <td>${truckNo}</td>
-                            <td>${from}</td>
-                            <td>${to}</td>
-                        </tr>
-                    </table>
-                    
-                    <table class="lr-table">
-                        <tr>
-                            <th>Sr.no</th>
-                            <th>No. of Packages</th>
-                            <th>Nature of Goods</th>
-                            <th>Actual Wt.</th>
-                            <th>Rate</th>
-                            <th>DUE OR PAID Rs.</th>
-                            <th>Rs.</th>
-                            <th>TO PAY</th>
-                            <th>Freight Payment Receipt</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>${noOfPackages}</td>
-                            <td>${natureOfGoods}</td>
-                            <td>${actualWeight}</td>
-                            <td>Freight</td>
-                            <td>${freight || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td>Freight To Pay</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Kaanta</td>
-                            <td>${kaanta || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>CGST 2.5%</td>
-                            <td>${cgst || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>SGST 2.5%</td>
-                            <td>${sgst || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>S.T. Ch.</td>
-                            <td>${stCh || '0.00'}</td>
-                            <td>${stCh || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Collection</td>
-                            <td>${collection || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>D.D. Ch.</td>
-                            <td>${ddCh || '0.00'}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>B. TOTAL</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Value Rs.=</td>
-                        </tr>
-                    </table>
-                    
-                    
+            <table class="lr-table">
+                <tr>
+                    <th>CONSIGNEE:</th>
+                    <th>DATE:</th>
+                    <th>TRUCK NO.:</th>
+                    <th>FROM:</th>
+                    <th>TO:</th>
+                </tr>
+                <tr>
+                    <td>${consignee}</td>
+                    <td>${formattedDate}</td>
+                    <td>${truckNo}</td>
+                    <td>${from}</td>
+                    <td>${to}</td>
+                </tr>
+            </table>
+            
+            <table class="lr-table">
+                <tr>
+                    <th>Sr.no</th>
+                    <th>No. of Packages</th>
+                    <th>Nature of Goods</th>
+                    <th>Actual Wt.</th>
+                    <th>Rate</th>
+                    <th>DUE OR PAID Rs.</th>
+                    <th>Rs.</th>
+                    <th>TO PAY</th>
+                    <th>Freight Payment Receipt</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>${noOfPackages}</td>
+                    <td>${natureOfGoods}</td>
+                    <td>${actualWeight}</td>
+                    <td>Freight</td>
+                    <td>${freight || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td>Freight To Pay</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Kaanta</td>
+                    <td>${kaanta || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>CGST 2.5%</td>
+                    <td>${cgst || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>SGST 2.5%</td>
+                    <td>${sgst || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>S.T. Ch.</td>
+                    <td>${stCh || '0.00'}</td>
+                    <td>${stCh || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Collection</td>
+                    <td>${collection || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>D.D. Ch.</td>
+                    <td>${ddCh || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>B. TOTAL</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Value Rs.=</td>
+                </tr>
+            </table>
+            
+            <div class="copy-footer">
+                <div style="text-align: left;">
+                    <p>Accepted for cartings on the terms and conditions printed overleaf.</p>
+                    <p>Not Responsible for Breakage & Leakage.</p>
+                    <p>(GSTIN : 27CHYPK2888PTZY)</p>
+                </div>
+                <div class="copy-label">CONSIGNOR COPY</div>
+                <div style="text-align: right;">
+                    <p>For BOMBAY JANSEVA TRANSPORT CO.</p>
                 </div>
             </div>
-
-         <div class="lr-container">
-        <!-- ... existing LR content ... -->
-        
-        <div class="consignor-copy" style="margin-top: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
-    <div style="text-align: left;">
-        <p>Accepted for cartings on the terms and conditions printed overleaf.</p>
-        <p>Not Responsible for Breakage & Leakage.</p>
-        <p>(GSTIN : 27CHYPK2888PTZY)</p>
+        </div>
     </div>
-    <div style="text-align: center;">
-        <p style="font-weight: bold; margin: 10px 0;">CONSIGNOR COPY</p>
+    
+    <!-- Page break for printing -->
+    <div class="page-break"></div>
+    
+    <!-- Consignee Copy -->
+    <div class="lr-container">
+        <div class="company-header">
+            <div class="company-name">BOMBAY JANSEVA TRANSPORT CO.</div>
+            <div class="company-tagline">PART LOAD & FULL LOAD DAILY KALAMBOLI TO ALL OVER MUMBAI</div>
+            <div class="company-address">OFFICE: 338 Victoria Over Bridge, Opus Brimme Company<br>
+                Reap Road, Mumbai - 400 010, Private Bag #15156 / 9552021074 / 9506799279
+            </div>
+            <p class="lr-no"><strong>LR NO:</strong> ${lrNo}</p>
+            <p><strong>CONSIGNOR:</strong> ${consignor}</p>
+            
+            <table class="lr-table">
+                <tr>
+                    <th>CONSIGNEE:</th>
+                    <th>DATE:</th>
+                    <th>TRUCK NO.:</th>
+                    <th>FROM:</th>
+                    <th>TO:</th>
+                </tr>
+                <tr>
+                    <td>${consignee}</td>
+                    <td>${formattedDate}</td>
+                    <td>${truckNo}</td>
+                    <td>${from}</td>
+                    <td>${to}</td>
+                </tr>
+            </table>
+            
+            <table class="lr-table">
+                <tr>
+                    <th>Sr.no</th>
+                    <th>No. of Packages</th>
+                    <th>Nature of Goods</th>
+                    <th>Actual Wt.</th>
+                    <th>Rate</th>
+                    <th>DUE OR PAID Rs.</th>
+                    <th>Rs.</th>
+                    <th>TO PAY</th>
+                    <th>Freight Payment Receipt</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>${noOfPackages}</td>
+                    <td>${natureOfGoods}</td>
+                    <td>${actualWeight}</td>
+                    <td>Freight</td>
+                    <td>${freight || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td>Freight To Pay</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Kaanta</td>
+                    <td>${kaanta || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>CGST 2.5%</td>
+                    <td>${cgst || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>SGST 2.5%</td>
+                    <td>${sgst || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>S.T. Ch.</td>
+                    <td>${stCh || '0.00'}</td>
+                    <td>${stCh || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Collection</td>
+                    <td>${collection || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>D.D. Ch.</td>
+                    <td>${ddCh || '0.00'}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>B. TOTAL</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Value Rs.=</td>
+                </tr>
+            </table>
+            
+            <div class="copy-footer">
+                <div style="text-align: left;">
+                    <p>Accepted for cartings on the terms and conditions printed overleaf.</p>
+                    <p>Not Responsible for Breakage & Leakage.</p>
+                    <p>(GSTIN : 27CHYPK2888PTZY)</p>
+                </div>
+                <div class="copy-label">CONSIGNEE COPY</div>
+                <div style="text-align: right;">
+                    <p>For BOMBAY JANSEVA TRANSPORT CO.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div style="text-align: right;">
-        <p>For BOMBAY JANSEVA TRANSPORT CO.</p>
-    </div>
-</div>
-        `;
+`;
         
         // Show print button
         printLRBtn.style.display = 'block';
