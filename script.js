@@ -129,6 +129,9 @@ lrPreview.innerHTML = `
             margin-bottom: 15px;
         }
         .company-name {
+            color:#a82f21;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
             font-size: 18px;
             font-weight: bold;
             text-transform: uppercase;
@@ -168,6 +171,11 @@ lrPreview.innerHTML = `
             text-align: center;
             margin: 10px 0;
             font-size: 16px;
+        }
+            .red-text {
+            color: #a82f21;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
         .page-break {
             page-break-after: always;
@@ -312,7 +320,7 @@ lrPreview.innerHTML = `
                 </div>
                 <div class="copy-label">CONSIGNOR COPY</div>
                 <div style="text-align: right;">
-                    <p>For BOMBAY JANSEVA TRANSPORT CO.</p>
+                    <p class="red-text">For BOMBAY JANSEVA TRANSPORT CO.</p>
                 </div>
             </div>
         </div>
@@ -459,7 +467,7 @@ lrPreview.innerHTML = `
                 </div>
                 <div class="copy-label">CONSIGNEE COPY</div>
                 <div style="text-align: right;">
-                    <p>For BOMBAY JANSEVA TRANSPORT CO.</p>
+                    <p class="red-text">For BOMBAY JANSEVA TRANSPORT CO.</p>
                 </div>
             </div>
         </div>
