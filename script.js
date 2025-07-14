@@ -187,8 +187,8 @@ lrPreview.innerHTML = `
         <div class="company-header">
             <div class="company-name">BOMBAY JANSEVA TRANSPORT CO.</div>
             <div class="company-tagline">PART LOAD & FULL LOAD DAILY KALAMBOLI TO ALL OVER MUMBAI</div>
-            <div class="company-address">OFFICE: 338 Victoria Over Bridge, Opus Brimme Company<br>
-                Reap Road, Mumbai - 400 010, Private Bag #15156 / 9552021074 / 9506799279
+            <div class="company-address">OFFICE: 339 Victoria Over Bridge, Opp Britania Company<br>
+                Reay Road, Mumbai - 400 010, / 8097196156 / 9833021074
             </div>
             <p class="lr-no"><strong>LR NO:</strong> ${lrNo}</p>
             <p><strong>CONSIGNOR:</strong> ${consignor}</p>
@@ -316,7 +316,7 @@ lrPreview.innerHTML = `
                 <div style="text-align: left;">
                     <p>Accepted for cartings on the terms and conditions printed overleaf.</p>
                     <p>Not Responsible for Breakage & Leakage.</p>
-                    <p>(GSTIN : 27CHYPK2888PTZY)</p>
+                    <p>(GSTIN : 27CHYPK2888P1ZY)</p>
                 </div>
                 <div class="copy-label">CONSIGNOR COPY</div>
                 <div style="text-align: right;">
@@ -334,8 +334,8 @@ lrPreview.innerHTML = `
         <div class="company-header">
             <div class="company-name">BOMBAY JANSEVA TRANSPORT CO.</div>
             <div class="company-tagline">PART LOAD & FULL LOAD DAILY KALAMBOLI TO ALL OVER MUMBAI</div>
-            <div class="company-address">OFFICE: 338 Victoria Over Bridge, Opus Brimme Company<br>
-                Reap Road, Mumbai - 400 010, Private Bag #15156 / 9552021074 / 9506799279
+            <div class="company-address">OFFICE: 339 Victoria Over Bridge, Opp Britania Company<br>
+                Reay Road, Mumbai - 400 010, / 8097196156 / 9833021074
             </div>
             <p class="lr-no"><strong>LR NO:</strong> ${lrNo}</p>
             <p><strong>CONSIGNOR:</strong> ${consignor}</p>
@@ -463,7 +463,7 @@ lrPreview.innerHTML = `
                 <div style="text-align: left;">
                     <p>Accepted for cartings on the terms and conditions printed overleaf.</p>
                     <p>Not Responsible for Breakage & Leakage.</p>
-                    <p>(GSTIN : 27CHYPK2888PTZY)</p>
+                    <p>(GSTIN : 27CHYPK2888P1ZY)</p>
                 </div>
                 <div class="copy-label">CONSIGNEE COPY</div>
                 <div style="text-align: right;">
